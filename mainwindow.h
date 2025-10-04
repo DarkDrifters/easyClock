@@ -15,6 +15,7 @@ class MainWindow : public QMainWindow {
 private slots:
     void on_ExitApp();
     void on_InfoOpen();
+    void updateDidplayTime();//Обновление времени, выполняется таймером
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -23,5 +24,6 @@ public:
 private:
     Ui::MainWindow *ui;
     InfoWindow *infoW = nullptr;
+    QTimer *timer;
 };
 #endif // MAINWINDOW_H
