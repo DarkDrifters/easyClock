@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "infowindow.h"
+#include "settingwindow.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -16,6 +17,7 @@ private slots:
     void on_ExitApp();
     void on_InfoOpen();
     void updateDidplayTime();//Обновление времени, выполняется таймером
+    void on_SettingOpen();
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -25,5 +27,6 @@ private:
     Ui::MainWindow *ui;
     InfoWindow *infoW = nullptr;
     QTimer *timer;
+    SettingWindow *settingW = nullptr;
 };
 #endif // MAINWINDOW_H
