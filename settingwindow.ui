@@ -115,8 +115,17 @@
           <layout class="QGridLayout" name="gridLayout_2">
            <item row="1" column="2">
             <widget class="QLabel" name="exempleText">
+             <property name="font">
+              <font>
+               <pointsize>18</pointsize>
+               <italic>false</italic>
+              </font>
+             </property>
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;00:00:00&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>00:00:00</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -152,7 +161,7 @@
              <property name="font">
               <font>
                <pointsize>18</pointsize>
-               <italic>true</italic>
+               <italic>false</italic>
               </font>
              </property>
              <property name="text">
@@ -183,7 +192,7 @@
          </widget>
         </item>
         <item>
-         <widget class="KColorButton" name="kcolorbutton">
+         <widget class="KColorButton" name="colorFont">
           <property name="maximumSize">
            <size>
             <width>100</width>

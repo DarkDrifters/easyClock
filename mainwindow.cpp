@@ -10,11 +10,20 @@ MainWindow::MainWindow(QWidget *parent)
     // Привязка
     connect(ui->actExit, &QAction::triggered, this, &MainWindow::on_ExitApp);
     connect(ui->actInfo, &QAction::triggered, this, &MainWindow::on_InfoOpen);
-    connect(ui->actSetting, &QAction::triggered, this, &MainWindow::on_SettingOpen);
+    connect(ui->actSetting, &QAction::triggered, this,
+            &MainWindow::on_SettingOpen);
     // Настройка и запуск таймера обновления
     timer = new QTimer(this);
     timer->start(1000); // В милисекундах
-    connect(timer, &QTimer::timeout, this, &MainWindow::updateDidplayTime); // Привязка слота к событию
+    connect(timer, &QTimer::timeout, this,
+            &MainWindow::updateDidplayTime); // Привязка слота к событию
+    // Получение настроек из файла сохранения
+    dSettings = new DataSettings("DarkDrifters", "easyClock", this);
+    ui->textClock->setFont(dSettings->getValue("FontClock").value<QFont>());
+    QPalette palette = ui->textClock->palette();
+    palette.setColor(QPalette::WindowText,
+                     dSettings->getValue("ColorFont").value<QColor>());
+    ui->textClock->setPalette(palette);
 }
 // Деконструктор
 MainWindow::~MainWindow() {
@@ -40,6 +49,16 @@ void MainWindow::updateDidplayTime() {
 void MainWindow::on_SettingOpen() {
     if (!settingW || !settingW->isVisible()) {
         settingW = new SettingWindow(this);
+        connect(settingW, &SettingWindow::changeSettings, this,
+                &MainWindow::hendleChangeSetting);
         settingW->show();
     }
+}
+// Изминение настроек
+void MainWindow::hendleChangeSetting() {
+    ui->textClock->setFont(dSettings->getValue("FontClock").value<QFont>());
+    QPalette palette = ui->textClock->palette();
+    palette.setColor(QPalette::WindowText,
+                     dSettings->getValue("ColorFont").value<QColor>());
+    ui->textClock->setPalette(palette);
 }

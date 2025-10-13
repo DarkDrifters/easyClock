@@ -1,6 +1,7 @@
 #ifndef SETTINGWINDOW_H
 #define SETTINGWINDOW_H
 
+#include "datasettings.h"
 #include <QMainWindow>
 
 namespace Ui {
@@ -20,10 +21,14 @@ private slots:
 
     void on_backButton_clicked();
 
-    void on_kcolorbutton_changed(const QColor &newColor);
+    void on_colorFont_changed(const QColor &newColor);
+signals:
+    //Сигнал изминения настроек
+    void changeSettings();
 
 private:
     Ui::SettingWindow *ui;
+    DataSettings *dSettings = nullptr;
 };
 
 #endif // SETTINGWINDOW_H

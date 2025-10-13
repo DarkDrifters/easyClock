@@ -12,12 +12,14 @@ INCLUDEPATH += /usr/include/KF6/KWidgetsAddons
 LIBS += -lKF6WidgetsAddons
 
 SOURCES += \
+    datasettings.cpp \
     infowindow.cpp \
     main.cpp \
     mainwindow.cpp \
     settingwindow.cpp
 
 HEADERS += \
+    datasettings.h \
     infowindow.h \
     mainwindow.h \
     settingwindow.h

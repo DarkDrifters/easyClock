@@ -18,6 +18,7 @@ private slots:
     void on_InfoOpen();
     void updateDidplayTime();//Обновление времени, выполняется таймером
     void on_SettingOpen();
+    void hendleChangeSetting();//Оброботка изминения настроек
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -28,5 +29,6 @@ private:
     InfoWindow *infoW = nullptr;
     QTimer *timer;
     SettingWindow *settingW = nullptr;
+    DataSettings* dSettings = nullptr;
 };
 #endif // MAINWINDOW_H
