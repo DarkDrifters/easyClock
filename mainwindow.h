@@ -30,5 +30,6 @@ private:
     QTimer *timer;
     SettingWindow *settingW = nullptr;
     DataSettings* dSettings = nullptr;
+    QString initFormnatClock;
 };
 #endif // MAINWINDOW_H

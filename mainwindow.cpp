@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     palette.setColor(QPalette::WindowText,
                      dSettings->getValue("ColorFont").value<QColor>());
     ui->textClock->setPalette(palette);
+    initFormnatClock = dSettings->getValue("FormatClock","HH:mm:ss").value<QString>();
 }
 // Деконструктор
 MainWindow::~MainWindow() {
@@ -42,7 +43,7 @@ void MainWindow::on_InfoOpen() {
 }
 // Утоновка времени в окно
 void MainWindow::updateDidplayTime() {
-    QString str = QDateTime::currentDateTime().toString("HH:mm:ss");
+    QString str = QDateTime::currentDateTime().toString(initFormnatClock);
     ui->textClock->setText(str);
 }
 // Открытие настроек
@@ -61,4 +62,5 @@ void MainWindow::hendleChangeSetting() {
     palette.setColor(QPalette::WindowText,
                      dSettings->getValue("ColorFont").value<QColor>());
     ui->textClock->setPalette(palette);
+    initFormnatClock = dSettings->getValue("FormatClock","HH:mm:ss").value<QString>();
 }

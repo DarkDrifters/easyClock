@@ -14,6 +14,7 @@ SettingWindow::SettingWindow(QWidget *parent)
     // создание объекта настроек
     dSettings = new DataSettings("DarkDrifters", "easyClock", this);
     // Получение настроек из сохранения
+    //Второе значение в методе установки - значение по умолчанию
     ui->colorFont->setColor(dSettings->getValue("ColorFont").value<QColor>());
     ui->exempleText->setFont(dSettings->getValue("FontClock").value<QFont>());
     ui->textFont->setText(ui->exempleText->font().family());
@@ -21,6 +22,9 @@ SettingWindow::SettingWindow(QWidget *parent)
     QPalette pallete = ui->exempleText->palette();
     pallete.setColor(QPalette::WindowText, ui->colorFont->color());
     ui->exempleText->setPalette(pallete);
+    ui->formatClock ->setText(dSettings->getValue("FormatClock","HH:mm:ss").value<QString>());
+    ui->checkMenue->setCheckState(dSettings->getValue("VisibleMenue",Qt::CheckState::Checked).value<Qt::CheckState>());
+    ui->checkMaketWin->setCheckState(dSettings->getValue("VisibleMaketWin",Qt::CheckState::Checked).value<Qt::CheckState>());
 }
 
 SettingWindow::~SettingWindow() { delete ui; }
@@ -29,6 +33,9 @@ SettingWindow::~SettingWindow() { delete ui; }
 void SettingWindow::on_saveButton_clicked() {
     dSettings->setValue("ColorFont", ui->colorFont->color());
     dSettings->setValue("FontClock", ui->exempleText->font());
+    dSettings->setValue("FormatClock", ui->formatClock->text());
+    dSettings->setValue("VisibleMenue",  ui->checkMenue->checkState());
+    dSettings->setValue("VisibleMaketWin", ui->checkMaketWin->checkState());
     emit changeSettings();//Подача сигнала
     this->close();
 }
